@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>GitHub Search</span>
+    
+    <span class="spacer"></span>
+    
+    @if (isLoggedIn$ | async) {
+      <button mat-button routerLink="/search">Search</button>
+      <button mat-button routerLink="/bookmarks">Bookmarks</button>
+      <button mat-flat-button color="accent" (click)="logout()">Logout</button>
+    }
+  </mat-toolbar-row>
+</mat-toolbar>

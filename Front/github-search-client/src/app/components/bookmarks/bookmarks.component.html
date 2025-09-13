@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <h1 class="mb-4">My Bookmarks</h1>
+  
+  @if(bookmarks$ | async; as bookmarks) {
+    @if(bookmarks.length > 0) {
+      <div class="row">
+        @for(repo of bookmarks; track repo.id) {
+          <div class="col-md-4 col-lg-3 mb-4">
+            <app-repo-card [repository]="repo"></app-repo-card>
+          </div>
+        }
+      </div>
+    } @else {
+      <p class="text-center text-muted">You have no bookmarked repositories yet.</p>
+    }
+  } @else {
+    <div class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  }
+</div>

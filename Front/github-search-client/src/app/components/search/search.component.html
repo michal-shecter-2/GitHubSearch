@@ -1,0 +1,28 @@
+<div class="search-container">
+  <h1>Search GitHub Repositories</h1>
+  <div class="search-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Repository name...</mat-label>
+      <input matInput [formControl]="searchControl" (keyup.enter)="onSearch()">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="onSearch()">
+      <mat-icon>search</mat-icon>
+      Search
+    </button>
+  </div>
+  
+  @if(isLoading) {
+    <div class="spinner-container">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+  } @else {
+    <div class="results-grid">
+      @for (repo of repositories; track repo.id) {
+        <app-repo-card [repository]="repo"></app-repo-card>
+      }
+    </div>
+    @if(hasSearched && repositories.length === 0) {
+      <p class="no-results">No repositories found.</p>
+    }
+  }
+</div>
